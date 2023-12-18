@@ -2,8 +2,8 @@ package handlers
 
 import (
 	"encoding/json"
-	"goHttpServer/models"
 	"net/http"
+	"userSystem/models"
 )
 
 func Login(w http.ResponseWriter, r *http.Request) {

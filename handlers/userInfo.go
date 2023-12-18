@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"goHttpServer/models"
 	"net/http"
 	"reflect"
 	"strconv"
+	"userSystem/models"
 )
 
 func QueryUserInfo(w http.ResponseWriter, r *http.Request) {

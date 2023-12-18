@@ -1,4 +1,4 @@
-module goHttpServer
+module userSystem
 
 go 1.21
 
