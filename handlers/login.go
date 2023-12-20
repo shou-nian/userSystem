@@ -13,33 +13,33 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// 解析请求参数
-	var body models.LoginParams
+	var requestBody models.LoginParams
 	rawBody := json.NewDecoder(r.Body)
-	if err := rawBody.Decode(&body); err != nil {
+	if err := rawBody.Decode(&requestBody); err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		panic(err)
 		return
 	}
-	if body.Email == "" || body.Password == "" {
+	if requestBody.Email == "" || requestBody.Password == "" {
 		w.WriteHeader(http.StatusBadRequest)
-		_, err := w.Write([]byte("email && password is required!"))
+		_, err := w.Write([]byte(models.EmailOrPasswordIsRequiredError))
 		if err != nil {
 			panic(err)
 		}
 		return
 	}
-	if body.Email == "obama@gmail.com" && body.Password == "obama@gmail.com" {
+	if requestBody.Email == "obama@gmail.com" && requestBody.Password == "obama@gmail.com" {
 		cookie := &http.Cookie{Name: "haha", Value: "obama", Path: "/"}
 		http.SetCookie(w, cookie)
 		w.WriteHeader(http.StatusOK)
-		_, err := w.Write([]byte("login successfully"))
+		_, err := w.Write([]byte("login successfully!"))
 		if err != nil {
 			panic(err)
 		}
 		return
 	}
 	w.WriteHeader(http.StatusBadRequest)
-	_, err := w.Write([]byte("your email or password is invalid! please try again."))
+	_, err := w.Write([]byte(models.EmailOrPasswordIsInvalidError))
 	if err != nil {
 		panic(err)
 	}
