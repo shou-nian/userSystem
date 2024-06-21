@@ -27,3 +27,7 @@ func ServeIndex(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
+func commit() {
+	fmt.Println("")
+}
